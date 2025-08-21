@@ -12,17 +12,16 @@ A simple event (with no parameters) is written to the main journal file when the
 
 Parameters:
 
-- Vessel: "Ship" or "SRV" 
-- Inventory: array of cargo, 
-	- Name 
-	- Count 
-	- Stolen 
-	- MissionID (if relevant) 
-
+- Vessel: "Ship" or "SRV"
+- Inventory: array of cargo,
+	- Name
+	- Count
+	- Stolen
+	- MissionID (if relevant)
 
 Example:
 
-```
+```json
 {
 	"timestamp": "2018-06-26T08:21:17Z",
 	"event": "Cargo",
@@ -55,13 +54,12 @@ When written: If you should ever reset your game
 
 Parameters:
 
-- Name: commander name 
-- FID: player id 
-
+- Name: commander name
+- FID: player id
 
 Example:
 
-```
+```json
 {
 	"timestamp": "2016-06-10T14:32:03Z",
 	"event": "ClearSavedGame",
@@ -78,9 +76,8 @@ This is written before the inventory, loadout, etc
 
 Parameters:
 
-- Name: commander name 
-- FID: player id 
-
+- Name: commander name
+- FID: player id
 
 ## Loadout
 
@@ -88,44 +85,42 @@ When written: at startup, when loading from main menu, or when switching ships, 
 
 Parameters:
 
-- Ship: current ship type 
-- ShipID: ship id number (indicates which of your ships you are in) 
-- ShipName: user-defined ship name 
-- ShipIdent: user-defined ship ID string 
-- HullValue – may not always be present 
-- ModulesValue – may not always be present 
-- HullHealth 
-- UnladenMass – Mass of Hull and Modules, excludes fuel and cargo 
-- FuelCapacity: { Main: , Reserve: } 
-- CargoCapacity 
-- MaxJumpRange: (based on zero cargo, and just enough fuel for 1 jump) 
-- Rebuy 
-- Hot: (if wanted at startup – may not always be present) 
+- Ship: current ship type
+- ShipID: ship id number (indicates which of your ships you are in)
+- ShipName: user-defined ship name
+- ShipIdent: user-defined ship ID string
+- HullValue – may not always be present
+- ModulesValue – may not always be present
+- HullHealth
+- UnladenMass – Mass of Hull and Modules, excludes fuel and cargo
+- FuelCapacity: { Main: , Reserve: }
+- CargoCapacity
+- MaxJumpRange: (based on zero cargo, and just enough fuel for 1 jump)
+- Rebuy
+- Hot: (if wanted at startup – may not always be present)
 
-
-- Modules: array of installed items, each with: 
-	- Slot: slot name 
-	- Item: module name - lowercase 
-	- On: bool, indicates on or off 
-	- Priority: power priority 
-	- Health 
-	- Value 
-	- AmmoInClip: (if relevant) 
-	- AmmoInHopper: (if relevant) 
-	- Engineering: (if engineered) 
-		- EngineerID 
-		- Engineer: name 
-		- BlueprintID 
-		- BlueprintName: blueprint name   
-		- Level 
-		- Quality 
-		- ExperimentalEffect: (name, if applied) 
-		- Modifications: Json array of objects 
-			- Label – (see §15.11 below) 
-			- Value – may not always be present 
-			- OriginalValue 
-			- LessIsGood: bool 
-
+- Modules: array of installed items, each with:
+	- Slot: slot name
+	- Item: module name - lowercase
+	- On: bool, indicates on or off
+	- Priority: power priority
+	- Health
+	- Value
+	- AmmoInClip: (if relevant)
+	- AmmoInHopper: (if relevant)
+	- Engineering: (if engineered)
+		- EngineerID
+		- Engineer: name
+		- BlueprintID
+		- BlueprintName: blueprint name
+		- Level
+		- Quality
+		- ExperimentalEffect: (name, if applied)
+		- Modifications: Json array of objects
+			- Label – (see §15.11 below)
+			- Value – may not always be present
+			- OriginalValue
+			- LessIsGood: bool
 
 _(For a passenger cabin, AmmoInClip holds the number of places in the cabin)_
 
@@ -135,14 +130,13 @@ When written: at startup, when loading from main menu into game
 
 Parameters:
 
-- Raw: array of raw materials (each with name and count) 
-- Manufactured: array of manufactured items 
-- Encoded: array of scanned data 
-
+- Raw: array of raw materials (each with name and count)
+- Manufactured: array of manufactured items
+- Encoded: array of scanned data
 
 Example:
 
-```
+```json
 {
 	"timestamp": "2017-02-10T14:25:51Z",
 	"event": "Materials",
@@ -197,20 +191,18 @@ When written: at startup
 
 Parameters:
 
-- Active: (array of objects) 
-- Failed: (array of objects) 
-- Complete: (array of objects) 
-
+- Active: (array of objects)
+- Failed: (array of objects)
+- Complete: (array of objects)
 
 Each object contains:
 
-- MissionID 
-- Name 
-- PassengerMission: bool 
-- Expires: time left in seconds 
+- MissionID
+- Name
+- PassengerMission: bool
+- Expires: time left in seconds
 
-
-```
+```json
 {
 	"timestamp": "2017-10-02T10:37:58Z",
 	"event": "Missions",
@@ -233,14 +225,13 @@ When written: Creating a new commander
 
 Parameters:
 
-- Name: (new) commander name 
-- FID: player id 
-- Package: selected starter package 
-
+- Name: (new) commander name
+- FID: player id
+- Package: selected starter package
 
 Example:
 
-```
+```json
 {
 	"timestamp": "2016-06-10T14:32:03Z",
 	"event": "NewCommander",
@@ -256,30 +247,29 @@ When written: at startup, when loading from main menu into game
 
 Parameters:
 
-- Commander: commander name 
-- FID: player id 
-- Horizons: bool 
-- Odyssey: bool 
-- Ship: current ship type 
-- ShipID: ship id number (indicates which of your ships you are in) 
-- StartLanded: true (only present if landed) 
-- StartDead:true (only present if starting dead: see "Resurrect") 
-- GameMode: Open, Solo or Group 
-- Group: name of group (if in a group) 
-- Credits: current credit balance 
-- Loan: current loan 
-- ShipName: user-defined ship name 
-- ShipIdent: user-defined ship ID string 
-- FuelLevel: current fuel   
-- FuelCapacity: size of main tank 
-- language 
-- gameversion 
-- build 
-
+- Commander: commander name
+- FID: player id
+- Horizons: bool
+- Odyssey: bool
+- Ship: current ship type
+- ShipID: ship id number (indicates which of your ships you are in)
+- StartLanded: true (only present if landed)
+- StartDead:true (only present if starting dead: see "Resurrect")
+- GameMode: Open, Solo or Group
+- Group: name of group (if in a group)
+- Credits: current credit balance
+- Loan: current loan
+- ShipName: user-defined ship name
+- ShipIdent: user-defined ship ID string
+- FuelLevel: current fuel
+- FuelCapacity: size of main tank
+- language
+- gameversion
+- build
 
 Example:
 
-```
+```json
 {
 	"timestamp": "2017-02-10T14:25:51Z",
 	"event": "LoadGame",
@@ -304,13 +294,12 @@ When written: at startup, when loading the saved game file
 
 Parameters:
 
-- Manifest: array of passenger records, each containing: 
-	- MissionID 
-	- Type 
-	- VIP (bool) 
-	- Wanted (bool) 
-	- Count 
-
+- Manifest: array of passenger records, each containing:
+	- MissionID
+	- Type
+	- VIP (bool)
+	- Wanted (bool)
+	- Count
 
 ## Powerplay
 
@@ -318,16 +307,15 @@ When written: at startup, if player has pledged to a power
 
 Parameters:
 
-- Power: name 
-- Rank 
-- Merits 
-- Votes 
-- TimePledged (time in seconds) 
-
+- Power: name
+- Rank
+- Merits
+- Votes
+- TimePledged (time in seconds)
 
 Example:
 
-```
+```json
 {
 	"timestamp": "2018-01-31T10:53:04Z",
 	"event": "Powerplay",
@@ -345,17 +333,16 @@ When written: at startup
 
 Parameters:
 
-- Combat: percent progress to next rank 
-- Trade: " 
-- Explore: " 
-- Empire: " 
-- Federation: " 
-- CQC: " 
-
+- Combat: percent progress to next rank
+- Trade: "
+- Explore: "
+- Empire: "
+- Federation: "
+- CQC: "
 
 Example:
 
-```
+```json
 {
 	"timestamp": "2016-06-10T14:32:03Z",
 	"event": "Progress",
@@ -374,17 +361,16 @@ When written: at startup
 
 Parameters:
 
-- Combat: rank on scale 0-8 
-- Trade: rank on scale 0-8 
-- Explore: rank on scale 0-8 
-- Empire: military rank 
-- Federation: military rank 
-- CQC: rank on scale 0-8 
-
+- Combat: rank on scale 0-8
+- Trade: rank on scale 0-8
+- Explore: rank on scale 0-8
+- Empire: military rank
+- Federation: military rank
+- CQC: rank on scale 0-8
 
 Example:
 
-```
+```json
 {
 	"timestamp": "2016-06-10T14:32:03Z",
 	"event": "Rank",
@@ -405,11 +391,10 @@ This gives the player's reputation (on a scale of -100..+100) with the superpowe
 
 Parameters:
 
-- Empire 
-- Federation 
-- Independent 
-- Alliance 
-
+- Empire
+- Federation
+- Independent
+- Alliance
 
 Note thresholds:
 
@@ -433,219 +418,218 @@ This line contains the information displayed in the statistics panel on the righ
 
 Parameters:
 
-- Bank_Account 
-	- Current_Wealth Spent_On_Ships 
-	- Spent_On_Outfitting Spent_On_Repairs 
-	- Spent_On_Fuel 
-	- Spent_On_Ammo_Consumables 
-	- Insurance_Claims 
+- Bank_Account
+	- Current_Wealth Spent_On_Ships
+	- Spent_On_Outfitting Spent_On_Repairs
+	- Spent_On_Fuel
+	- Spent_On_Ammo_Consumables
+	- Insurance_Claims
 	- Spent_On_Insurance
-        - Owned_Ship_Count
-        - Spent_On_Suits
-        - Spent_On_Weapons
-        - Spent_On_Suit_Consumables
-        - Suits_Owned
-        - Weapons_Owned
-        - Spent_On_Premium_Stock
-        - Premium_Stock_Bought 
-- Combat 
-	- Bounties_Claimed 
-	- Bounty_Hunting_Profit 
-	- Combat_Bonds 
-	- Combat_Bond_Profits 
-	- Assassinations 
-	- Assassination_Profits 
-	- Highest_Single_Reward 
+	- Owned_Ship_Count
+	- Spent_On_Suits
+	- Spent_On_Weapons
+	- Spent_On_Suit_Consumables
+	- Suits_Owned
+	- Weapons_Owned
+	- Spent_On_Premium_Stock
+	- Premium_Stock_Bought
+- Combat
+	- Bounties_Claimed
+	- Bounty_Hunting_Profit
+	- Combat_Bonds
+	- Combat_Bond_Profits
+	- Assassinations
+	- Assassination_Profits
+	- Highest_Single_Reward
 	- Skimmers_Killed
-        - OnFoot_Combat_Bonds
-        - OnFoot_Combat_Bonds_Profits
-        - OnFoot_Vehicles_Destroyed
-        - OnFoot_Ships_Destroyed
-        - Dropships_Taken
-        - Dropships_Booked
-        - Dropships_Cancelled
-        - ConflictZone_High
-        - ConflictZone_Medium
-        - ConflictZone_Low
-        - ConflictZone_Total
-        - ConflictZone_High_Wins
-        - ConflictZone_Medium_Wins
-        - ConflictZone_Low_Wins
-        - ConflictZone_Total_Wins
-        - Settlement_Defended
-        - Settlement_Conquered
-        - OnFoot_Skimmers_Killed
-        - OnFoot_Scavs_Killed
-        - ConflictZone_Low
-        - ConflictZone_Total
-        - ConflictZone_High_Wins
-        - ConflictZone_Medium_Wins
-        - ConflictZone_Low_Wins
-        - ConflictZone_Total_Wins
-        - Settlement_Defended
-        - Settlement_Conquered
-        - OnFoot_Skimmers_Killed
-        - OnFoot_Scavs_Killed 
+	- OnFoot_Combat_Bonds
+	- OnFoot_Combat_Bonds_Profits
+	- OnFoot_Vehicles_Destroyed
+	- OnFoot_Ships_Destroyed
+	- Dropships_Taken
+	- Dropships_Booked
+	- Dropships_Cancelled
+	- ConflictZone_High
+	- ConflictZone_Medium
+	- ConflictZone_Low
+	- ConflictZone_Total
+	- ConflictZone_High_Wins
+	- ConflictZone_Medium_Wins
+	- ConflictZone_Low_Wins
+	- ConflictZone_Total_Wins
+	- Settlement_Defended
+	- Settlement_Conquered
+	- OnFoot_Skimmers_Killed
+	- OnFoot_Scavs_Killed
+	- ConflictZone_Low
+	- ConflictZone_Total
+	- ConflictZone_High_Wins
+	- ConflictZone_Medium_Wins
+	- ConflictZone_Low_Wins
+	- ConflictZone_Total_Wins
+	- Settlement_Defended
+	- Settlement_Conquered
+	- OnFoot_Skimmers_Killed
+	- OnFoot_Scavs_Killed
 - Crime
-        - Notoriety 
-	- Fines 
-	- Total_Fines 
-	- Bounties_Received 
-	- Total_Bounties 
+	- Notoriety
+	- Fines
+	- Total_Fines
+	- Bounties_Received
+	- Total_Bounties
 	- Highest_Bounty
-        - Malware_Uploaded
-        - Settlements_State_Shutdown
-        - Production_Sabotage
-        - Production_Theft
-        - Total_Murders
-        - Citizens_Murdered
-        - Omnipol_Murdered
-        - Guards_Murdered
-        - Data_Stolen
-        - Goods_Stolen
-        - Sample_Stolen
-        - Total_Stolen
-        - Turrets_Destroyed
-        - Turrets_Overloaded
-        - Turrets_Total
-        - Value_Stolen_StateChange
-        - Profiles_ClonedMalware_Uploaded
-        - Settlements_State_Shutdown
-        - Production_Sabotage
-        - Production_Theft
-        - Total_Murders
-        - Citizens_Murdered
-        - Omnipol_Murdered
-        - Guards_Murdered
-        - Data_Stolen
-        - Goods_Stolen
-        - Sample_Stolen
-        - Total_Stolen
-        - Turrets_Destroyed
-        - Turrets_Overloaded
-        - Turrets_Total
-        - Value_Stolen_StateChange
-        - Profiles_Cloned 
-- Smuggling 
-	- Black_Markets_Traded_With 
-	- Black_Markets_Profits 
-	- Resources_Smuggled 
-	- Average_Profit 
-	- Highest_Single_Transaction   
-- Trading 
-	- Markets_Traded_With 
-	- Market_Profits 
-	- Resources_Traded 
-	- Average_Profit 
+	- Malware_Uploaded
+	- Settlements_State_Shutdown
+	- Production_Sabotage
+	- Production_Theft
+	- Total_Murders
+	- Citizens_Murdered
+	- Omnipol_Murdered
+	- Guards_Murdered
+	- Data_Stolen
+	- Goods_Stolen
+	- Sample_Stolen
+	- Total_Stolen
+	- Turrets_Destroyed
+	- Turrets_Overloaded
+	- Turrets_Total
+	- Value_Stolen_StateChange
+	- Profiles_ClonedMalware_Uploaded
+	- Settlements_State_Shutdown
+	- Production_Sabotage
+	- Production_Theft
+	- Total_Murders
+	- Citizens_Murdered
+	- Omnipol_Murdered
+	- Guards_Murdered
+	- Data_Stolen
+	- Goods_Stolen
+	- Sample_Stolen
+	- Total_Stolen
+	- Turrets_Destroyed
+	- Turrets_Overloaded
+	- Turrets_Total
+	- Value_Stolen_StateChange
+	- Profiles_Cloned
+- Smuggling
+	- Black_Markets_Traded_With
+	- Black_Markets_Profits
+	- Resources_Smuggled
+	- Average_Profit
 	- Highest_Single_Transaction
-        - Data_Sold
-        - Goods_Sold
-        - Assets_Sold  
-- Mining 
-	- Mining_Profits 
-	- Quantity_Mined 
-	- Materials_Collected   
-- Exploration 
-	- Systems_Visited 
-	- Exploration_Profits 
-	- Planets_Scanned_To_Level_2 
+- Trading
+	- Markets_Traded_With
+	- Market_Profits
+	- Resources_Traded
+	- Average_Profit
+	- Highest_Single_Transaction
+	- Data_Sold
+	- Goods_Sold
+	- Assets_Sold
+- Mining
+	- Mining_Profits
+	- Quantity_Mined
+	- Materials_Collected
+- Exploration
+	- Systems_Visited
+	- Exploration_Profits
+	- Planets_Scanned_To_Level_2
 	- Planets_Scanned_To_Level_3
-        - Efficient_Scans 
-	- Highest_Payout 
-	- Total_Hyperspace_Distance 
-	- Total_Hyperspace_Jumps 
-	- Greatest_Distance_From_Start 
+	- Efficient_Scans
+	- Highest_Payout
+	- Total_Hyperspace_Distance
+	- Total_Hyperspace_Jumps
+	- Greatest_Distance_From_Start
 	- Time_Played
-        - OnFoot_Distance_Travelled
-        - Shuttle_Journeys
-        - Shuttle_Distance_Travelled
-        - Spent_On_Shuttles
-        - First_Footfalls
-        - Planet_Footfalls
-        - Settlements_Visited   
+	- OnFoot_Distance_Travelled
+	- Shuttle_Journeys
+	- Shuttle_Distance_Travelled
+	- Spent_On_Shuttles
+	- First_Footfalls
+	- Planet_Footfalls
+	- Settlements_Visited
 - Passengers
-        - Passengers_Missions_Accepted
-	- Passengers_Missions_Bulk 
-	- Passengers_Missions_VIP 
-	- Passengers_Missions_Delivered 
-	- Passengers_Missions_Ejected   
-- Search_And_Rescue 
-	- SearchRescue_Traded 
-	- SearchRescue_Profit 
+	- Passengers_Missions_Accepted
+	- Passengers_Missions_Bulk
+	- Passengers_Missions_VIP
+	- Passengers_Missions_Delivered
+	- Passengers_Missions_Ejected
+- Search_And_Rescue
+	- SearchRescue_Traded
+	- SearchRescue_Profit
 	- SearchRescue_Count
-        - "Salvage_Legal_POI
-        - Salvage_Legal_Settlements
-        - Salvage_Illegal_POI
-        - Salvage_Illegal_Settlements
-        - Maglocks_Opened
-        - Panels_Opened
-        - Settlements_State_FireOut
-        - Settlements_State_Reboot":36
+	- Salvage_Legal_POI
+	- Salvage_Legal_Settlements
+	- Salvage_Illegal_POI
+	- Salvage_Illegal_Settlements
+	- Maglocks_Opened
+	- Panels_Opened
+	- Settlements_State_FireOut
+	- Settlements_State_Reboot
 - TG_ENCOUNTERS
-        - TG_ENCOUNTER_KILLED
-        - TG_ENCOUNTER_TOTAL
-        - TG_ENCOUNTER_TOTAL_LAST_SYSTEM
-        - TG_ENCOUNTER_TOTAL_LAST_TIMESTAMP
-        - TG_ENCOUNTER_TOTAL_LAST_SHIP 
+	- TG_ENCOUNTER_KILLED
+	- TG_ENCOUNTER_TOTAL
+	- TG_ENCOUNTER_TOTAL_LAST_SYSTEM
+	- TG_ENCOUNTER_TOTAL_LAST_TIMESTAMP
+	- TG_ENCOUNTER_TOTAL_LAST_SHIP
 - Crafting
-	- Count_Of_Used_Engineers 
-	- Recipes_Generated 
-	- Recipes_Generated_Rank_1 
-	- Recipes_Generated_Rank_2 
-	- Recipes_Generated_Rank_3 
-	- Recipes_Generated_Rank_4   
-	- Recipes_Generated_Rank_5   
-        - Suit_Mods_Applied
-        - Weapon_Mods_Applied
-        - Suits_Upgraded
-        - Weapons_Upgraded
-        - Suits_Upgraded_Full
-        - Weapons_Upgraded_Full
-        - Suit_Mods_Applied_Full
-        - Weapon_Mods_Applied_Full 
-- Crew 
-	- NpcCrew_TotalWages 
-	- NpcCrew_Hired 
-	- NpcCrew_Fired 
-	- NpcCrew_Died 
-- Multicrew 
-	- Multicrew_Time_Total 
-	- Multicrew_Gunner_Time_Total 
-	- Multicrew_Fighter_Time_Total 
-	- Multicrew_Credits_Total 
+	- Count_Of_Used_Engineers
+	- Recipes_Generated
+	- Recipes_Generated_Rank_1
+	- Recipes_Generated_Rank_2
+	- Recipes_Generated_Rank_3
+	- Recipes_Generated_Rank_4
+	- Recipes_Generated_Rank_5
+	- Suit_Mods_Applied
+	- Weapon_Mods_Applied
+	- Suits_Upgraded
+	- Weapons_Upgraded
+	- Suits_Upgraded_Full
+	- Weapons_Upgraded_Full
+	- Suit_Mods_Applied_Full
+	- Weapon_Mods_Applied_Full
+- Crew
+	- NpcCrew_TotalWages
+	- NpcCrew_Hired
+	- NpcCrew_Fired
+	- NpcCrew_Died
+- Multicrew
+	- Multicrew_Time_Total
+	- Multicrew_Gunner_Time_Total
+	- Multicrew_Fighter_Time_Total
+	- Multicrew_Credits_Total
 	- Multicrew_Fines_Total
 - Material_Trader_Stats
-        - Trades_Completed
-        - Materials_Traded
-        - Encoded_Materials_Traded
-        - Raw_Materials_Traded
-        - Grade_1_Materials_Traded
-        - Grade_2_Materials_Traded
-        - Grade_3_Materials_Traded
-        - Grade_4_Materials_Traded
-        - Grade_5_Materials_Traded
-        - Assets_Traded_In
-        - Assets_Traded_Out
+	- Trades_Completed
+	- Materials_Traded
+	- Encoded_Materials_Traded
+	- Raw_Materials_Traded
+	- Grade_1_Materials_Traded
+	- Grade_2_Materials_Traded
+	- Grade_3_Materials_Traded
+	- Grade_4_Materials_Traded
+	- Grade_5_Materials_Traded
+	- Assets_Traded_In
+	- Assets_Traded_Out
 - Exobiology
-        - Organic_Genus_Encountered
-        - Organic_Species_Encountered
-        - Organic_Variant_Encountered
-        - Organic_Data_Profits
-        - Organic_Data
-        - First_Logged_Profits
-        - First_Logged
-        - Organic_Systems
-        - Organic_Planets
-        - Organic_Genus
-        - Organic_Species 
-        
+	- Organic_Genus_Encountered
+	- Organic_Species_Encountered
+	- Organic_Variant_Encountered
+	- Organic_Data_Profits
+	- Organic_Data
+	- First_Logged_Profits
+	- First_Logged
+	- Organic_Systems
+	- Organic_Planets
+	- Organic_Genus
+	- Organic_Species
 
 
 Note times are in seconds
 
 Example:
 
-```
+```json
 {
 	"timestamp": "2017-09-25T15:18:31Z",
 	"event": "Statistics",
@@ -658,14 +642,14 @@ Example:
 		"Spent_On_Ammo_Consumables": 0,
 		"Insurance_Claims": 4,
 		"Spent_On_Insurance": 1397620,
-                "Owned_Ship_Count":8,
-                "Spent_On_Suits":79200000,
-                "Spent_On_Weapons":82525000,
-                "Spent_On_Suit_Consumables":3782000,
-                "Suits_Owned":11,
-                "Weapons_Owned":20,
-                "Spent_On_Premium_Stock":95000000,
-                "Premium_Stock_Bought":36
+		"Owned_Ship_Count": 8,
+		"Spent_On_Suits": 79200000,
+		"Spent_On_Weapons": 82525000,
+		"Spent_On_Suit_Consumables": 3782000,
+		"Suits_Owned": 11,
+		"Weapons_Owned": 20,
+		"Spent_On_Premium_Stock": 95000000,
+		"Premium_Stock_Bought": 36
 	},
 	"Combat": {
 		"Bounties_Claimed": 0,
@@ -676,50 +660,50 @@ Example:
 		"Assassination_Profits": 0,
 		"Highest_Single_Reward": 0,
 		"Skimmers_Killed": 0,
-                "OnFoot_Combat_Bonds":2686,
-                "OnFoot_Combat_Bonds_Profits":285103267,
-                "OnFoot_Vehicles_Destroyed":0,
-                "OnFoot_Ships_Destroyed":0,
-                "Dropships_Taken":45,
-                "Dropships_Booked":92,
-                "Dropships_Cancelled":0,
-                "ConflictZone_High":76,
-                "ConflictZone_Medium":28,
-                "ConflictZone_Low":12,
-                "ConflictZone_Total":116,
-                "ConflictZone_High_Wins":74,
-                "ConflictZone_Medium_Wins":26,
-                "ConflictZone_Low_Wins":12,
-                "ConflictZone_Total_Wins":112,
-                "Settlement_Defended":6,
-                "Settlement_Conquered":5,
-                "OnFoot_Skimmers_Killed":7,
-                "OnFoot_Scavs_Killed":243
+		"OnFoot_Combat_Bonds": 2686,
+		"OnFoot_Combat_Bonds_Profits": 285103267,
+		"OnFoot_Vehicles_Destroyed": 0,
+		"OnFoot_Ships_Destroyed": 0,
+		"Dropships_Taken": 45,
+		"Dropships_Booked": 92,
+		"Dropships_Cancelled": 0,
+		"ConflictZone_High": 76,
+		"ConflictZone_Medium": 28,
+		"ConflictZone_Low": 12,
+		"ConflictZone_Total": 116,
+		"ConflictZone_High_Wins": 74,
+		"ConflictZone_Medium_Wins": 26,
+		"ConflictZone_Low_Wins": 12,
+		"ConflictZone_Total_Wins": 112,
+		"Settlement_Defended": 6,
+		"Settlement_Conquered": 5,
+		"OnFoot_Skimmers_Killed": 7,
+		"OnFoot_Scavs_Killed": 243
 	},
 	"Crime": {
-                "Notoriety":0,
+		"Notoriety":0,
 		"Fines": 0,
 		"Total_Fines": 0,
 		"Bounties_Received": 0,
 		"Total_Bounties": 0,
 		"Highest_Bounty": 0,
-                "Malware_Uploaded":0,
-                "Settlements_State_Shutdown":1,
-                "Production_Sabotage":0,
-                "Production_Theft":62,
-                "Total_Murders":25,
-                "Citizens_Murdered":17,
-                "Omnipol_Murdered":1,
-                "Guards_Murdered":7,
-                "Data_Stolen":60,
-                "Goods_Stolen":520,
-                "Sample_Stolen":4,
-                "Total_Stolen":584,
-                "Turrets_Destroyed":0,
-                "Turrets_Overloaded":0,
-                "Turrets_Total":0,
-                "Value_Stolen_StateChange":0,
-                "Profiles_Cloned":24
+		"Malware_Uploaded": 0,
+		"Settlements_State_Shutdown": 1,
+		"Production_Sabotage": 0,
+		"Production_Theft": 62,
+		"Total_Murders": 25,
+		"Citizens_Murdered": 17,
+		"Omnipol_Murdered": 1,
+		"Guards_Murdered": 7,
+		"Data_Stolen": 60,
+		"Goods_Stolen": 520,
+		"Sample_Stolen": 4,
+		"Total_Stolen": 584,
+		"Turrets_Destroyed": 0,
+		"Turrets_Overloaded": 0,
+		"Turrets_Total": 0,
+		"Value_Stolen_StateChange": 0,
+		"Profiles_Cloned": 24
 	},
 	"Smuggling": {
 		"Black_Markets_Traded_With": 0,
@@ -734,9 +718,9 @@ Example:
 		"Resources_Traded": 23,
 		"Average_Profit": 4070,
 		"Highest_Single_Transaction": 17961,
-                "Data_Sold":366,
-                "Goods_Sold":526,
-                "Assets_Sold":426
+		"Data_Sold": 366,
+		"Goods_Sold": 526,
+		"Assets_Sold": 426
 	},
 	"Mining": {
 		"Mining_Profits": 0,
@@ -753,13 +737,13 @@ Example:
 		"Total_Hyperspace_Jumps": 295,
 		"Greatest_Distance_From_Start": 65222.47204614,
 		"Time_Played": 651060,
-                "OnFoot_Distance_Travelled":965216,
-                "Shuttle_Journeys":3,
-                "Shuttle_Distance_Travelled":136.20724062429,
-                "Spent_On_Shuttles":64150,
-                "First_Footfalls":720,
-                "Planet_Footfalls":1138,
-                "Settlements_Visited":28 
+		"OnFoot_Distance_Travelled": 965216,
+		"Shuttle_Journeys": 3,
+		"Shuttle_Distance_Travelled": 136.20724062429,
+		"Spent_On_Shuttles": 64150,
+		"First_Footfalls": 720,
+		"Planet_Footfalls": 1138,
+		"Settlements_Visited": 28
 	},
 	"Passengers": {
 		"Passengers_Missions_Bulk": 0,
@@ -771,22 +755,22 @@ Example:
 		"SearchRescue_Traded": 12,
 		"SearchRescue_Profit": 19467,
 		"SearchRescue_Count": 8,
-                "Salvage_Legal_POI":3764100,
-                "Salvage_Legal_Settlements":9068600,
-                "Salvage_Illegal_POI":1450000,
-                "Salvage_Illegal_Settlements":0,
-                "Maglocks_Opened":756,
-                "Panels_Opened":194,
-                "Settlements_State_FireOut":302,
-                "Settlements_State_Reboot":36
+		"Salvage_Legal_POI": 3764100,
+		"Salvage_Legal_Settlements": 9068600,
+		"Salvage_Illegal_POI": 1450000,
+		"Salvage_Illegal_Settlements": 0,
+		"Maglocks_Opened": 756,
+		"Panels_Opened": 194,
+		"Settlements_State_FireOut": 302,
+		"Settlements_State_Reboot": 36
 	},
-        "TG_ENCOUNTERS": {
-                "TG_ENCOUNTER_KILLED":213,
-                "TG_ENCOUNTER_TOTAL":18,
-                "TG_ENCOUNTER_TOTAL_LAST_SYSTEM":"Cephei Sector XO-A b3",
-                "TG_ENCOUNTER_TOTAL_LAST_TIMESTAMP":"3310-04-19 15:00",
-                "TG_ENCOUNTER_TOTAL_LAST_SHIP":"Krait Mk II"
-        },
+	"TG_ENCOUNTERS": {
+		"TG_ENCOUNTER_KILLED": 213,
+		"TG_ENCOUNTER_TOTAL": 18,
+		"TG_ENCOUNTER_TOTAL_LAST_SYSTEM": "Cephei Sector XO-A b3",
+		"TG_ENCOUNTER_TOTAL_LAST_TIMESTAMP": "3310-04-19 15:00",
+		"TG_ENCOUNTER_TOTAL_LAST_SHIP": "Krait Mk II"
+	},
 	"Crafting": {
 		"Count_Of_Used_Engineers": 2,
 		"Recipes_Generated": 28,
@@ -795,14 +779,14 @@ Example:
 		"Recipes_Generated_Rank_3": 9,
 		"Recipes_Generated_Rank_4": 4,
 		"Recipes_Generated_Rank_5": 0,
-		"Suit_Mods_Applied":10,
-                "Weapon_Mods_Applied":1,
-                "Suits_Upgraded":6,
-                "Weapons_Upgraded":8,
-                "Suits_Upgraded_Full":0,
-                "Weapons_Upgraded_Full":0,
-                "Suit_Mods_Applied_Full":6,
-                "Weapon_Mods_Applied_Full":0
+		"Suit_Mods_Applied": 10,
+		"Weapon_Mods_Applied": 1,
+		"Suits_Upgraded": 6,
+		"Weapons_Upgraded": 8,
+		"Suits_Upgraded_Full": 0,
+		"Weapons_Upgraded_Full": 0,
+		"Suit_Mods_Applied_Full": 6,
+		"Weapon_Mods_Applied_Full": 0
 	},
 	"Crew": {
 		"NpcCrew_TotalWages": 0,
@@ -817,31 +801,31 @@ Example:
 		"Multicrew_Credits_Total": 0,
 		"Multicrew_Fines_Total": 0
 	},
-        "Material_Trader_Stats": {
-                "Trades_Completed":540,
-                "Materials_Traded":11617,
-                "Encoded_Materials_Traded":4168,
-                "Raw_Materials_Traded":538,
-                "Grade_1_Materials_Traded":2037,
-                "Grade_2_Materials_Traded":2060,
-                "Grade_3_Materials_Traded":3236,
-                "Grade_4_Materials_Traded":2814,
-                "Grade_5_Materials_Traded":1470,
-                "Assets_Traded_In":218,
-                "Assets_Traded_Out":673
-        },
-        "Exobiology": {
-                "Organic_Genus_Encountered":21,
-                "Organic_Species_Encountered":98,
-                "Organic_Variant_Encountered":56,
-                "Organic_Data_Profits":17497803745,
-                "Organic_Data":1880,
-                "First_Logged_Profits":11593725615,
-                "First_Logged":1054,
-                "Organic_Systems":407,
-                "Organic_Planets":818,
-                "Organic_Genus":13,
-                "Organic_Species":34
-        }
+	"Material_Trader_Stats": {
+		"Trades_Completed": 540,
+		"Materials_Traded": 11617,
+		"Encoded_Materials_Traded": 4168,
+		"Raw_Materials_Traded": 538,
+		"Grade_1_Materials_Traded": 2037,
+		"Grade_2_Materials_Traded": 2060,
+		"Grade_3_Materials_Traded": 3236,
+		"Grade_4_Materials_Traded": 2814,
+		"Grade_5_Materials_Traded": 1470,
+		"Assets_Traded_In": 218,
+		"Assets_Traded_Out": 673
+	},
+	"Exobiology": {
+		"Organic_Genus_Encountered": 21,
+		"Organic_Species_Encountered": 98,
+		"Organic_Variant_Encountered": 56,
+		"Organic_Data_Profits": 17497803745,
+		"Organic_Data": 1880,
+		"First_Logged_Profits": 11593725615,
+		"First_Logged": 1054,
+		"Organic_Systems": 407,
+		"Organic_Planets": 818,
+		"Organic_Genus": 13,
+		"Organic_Species": 34
+	}
 }
 ```
